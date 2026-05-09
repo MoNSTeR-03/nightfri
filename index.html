@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Colección Salvaje: FNAF + Pokémon 🔥 Ryoko</title>
+    <title>Colección Épica: FNAF + Pokémon 🔥 Ryoko</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
         }
 
         body {
-            background: linear-gradient(145deg, #0a0a1a 0%, #050510 100%);
+            background: linear-gradient(145deg, #0a050f 0%, #020108 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,136 +24,112 @@
             padding: 12px;
         }
 
-        .collection-world {
+        .epic-collection {
             position: relative;
-            width: 1300px;
+            width: 1400px;
             max-width: 100%;
             height: 90vh;
-            min-height: 600px;
-            background: radial-gradient(circle at 20% 30%, #1a1f2e, #0a0a18);
+            min-height: 620px;
+            background: radial-gradient(circle at 30% 40%, #1a1025, #05020a);
             border-radius: 48px 48px 32px 32px;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.7), inset 0 1px 2px rgba(255,255,255,0.1);
-            overflow: hidden;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.08);
+            overflow-y: auto;
+            overflow-x: hidden;
             cursor: pointer;
-            border: 2px solid rgba(255, 180, 80, 0.6);
+            border: 2px solid rgba(255, 100, 80, 0.5);
+            scrollbar-width: thin;
         }
 
-        /* fondo con personajes dibujados (efecto graffiti) */
-        .bg-characters {
+        /* fondo con personajes diminutos (efecto loco) */
+        .bg-craziness {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             z-index: 1;
-            opacity: 0.35;
+            opacity: 0.2;
             pointer-events: none;
-            font-size: 45px;
+            font-size: 28px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            align-items: center;
-            padding: 20px;
+            padding: 30px;
         }
 
-        .bg-characters span {
-            margin: 15px;
-            filter: blur(0.8px);
-            transform: rotate(-5deg);
+        .bg-craziness span {
+            margin: 6px;
+            transform: rotate(var(--rot, -3deg));
         }
 
-        /* estante oscuro / estilo de colección */
-        .collector-shelf {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 32%;
-            background: linear-gradient(145deg, #2a1e2c, #140e18);
-            border-radius: 40px 40px 0 0;
-            box-shadow: inset 0 8px 20px rgba(0,0,0,0.6), 0 -2px 0 #b87c5e;
-            z-index: 5;
-        }
-
-        .shelf-plank {
-            position: absolute;
-            top: -18px;
-            left: 6%;
-            width: 88%;
-            height: 20px;
-            background: #8b5a4b;
-            border-radius: 16px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-            z-index: 6;
-        }
-
-        .shelf-plank2 {
-            top: -65px;
-            width: 75%;
-            left: 12.5%;
-        }
-
-        .items-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        /* contenedor de personajes clickeables (6 principales) */
+        .mega-layer {
+            position: relative;
             z-index: 20;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 40px 20px 180px 20px;
             pointer-events: none;
         }
 
-        .collection-item {
-            position: absolute;
+        .mega-item {
             pointer-events: auto;
             cursor: pointer;
-            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.5));
-            transition: transform 0.25s ease, filter 0.2s;
-            width: clamp(70px, 16vw, 100px);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 15px 18px;
             text-align: center;
-            z-index: 25;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255,120,80,0.6);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            min-width: 110px;
         }
 
-        .collection-item:active {
-            transform: scale(0.9);
+        .mega-item:active {
+            transform: scale(0.94);
+            background: rgba(0,0,0,0.7);
         }
 
-        .item-emoji {
-            font-size: clamp(60px, 15vw, 85px);
+        .mega-emoji {
+            font-size: 70px;
             display: block;
-            transition: all 0.2s;
-            text-shadow: 0 0 18px rgba(255, 100, 150, 0.7);
-            background: rgba(0,0,0,0.25);
-            border-radius: 30%;
-            padding: 5px;
+            text-shadow: 0 0 20px #ff6644;
+        }
+
+        .mega-name {
+            font-size: 13px;
+            color: #ffccaa;
+            margin-top: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .message-panel {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(18px);
+            position: sticky;
+            bottom: 15px;
+            margin: 15px;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(20px);
             border-radius: 36px;
-            padding: 18px 22px;
-            color: #ffe8e0;
-            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            padding: 16px 22px;
+            color: #fff0e6;
+            font-size: clamp(0.9rem, 4vw, 1.15rem);
             font-weight: 600;
             text-align: center;
-            border: 1px solid rgba(255, 120, 100, 0.8);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.7), 0 0 35px rgba(255, 80, 100, 0.3);
-            z-index: 40;
-            max-height: 33vh;
+            border: 1px solid rgba(255, 100, 80, 0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 35px rgba(255, 50, 50, 0.3);
+            z-index: 45;
+            max-height: 28vh;
             overflow-y: auto;
-            line-height: 1.5;
+            line-height: 1.45;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            text-shadow: 0 0 6px rgba(255, 0, 80, 0.3);
         }
 
         .romantic-text {
-            font-size: clamp(0.85rem, 3.8vw, 1.15rem);
-            letter-spacing: 0.2px;
+            font-size: clamp(0.85rem, 3.8vw, 1.1rem);
         }
 
         .poem-area {
@@ -163,231 +139,228 @@
             margin-top: 8px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             white-space: pre-line;
-            font-size: clamp(0.8rem, 3.5vw, 1rem);
-            max-height: 36vh;
+            font-size: clamp(0.8rem, 3.5vw, 0.98rem);
+            max-height: 32vh;
             overflow-y: auto;
             line-height: 1.5;
-            border: 1px solid rgba(255, 100, 100, 0.6);
+            border: 1px solid rgba(255, 80, 80, 0.6);
         }
 
-        .item-counter {
-            position: absolute;
-            top: 16px;
+        .counter-badge {
+            position: sticky;
+            top: 15px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            float: right;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(12px);
-            padding: 6px 18px;
-            border-radius: 40px;
+            padding: 8px 20px;
+            border-radius: 60px;
             font-weight: bold;
-            color: #ffccaa;
+            color: #ffb090;
             font-family: monospace;
             font-size: 1rem;
-            z-index: 45;
-            border: 1px solid #ff8866;
-            box-shadow: 0 2px 8px black;
-            letter-spacing: 1px;
+            z-index: 50;
+            border: 1px solid #ff7744;
+            margin: 15px;
+            display: inline-block;
+            box-shadow: 0 2px 10px black;
         }
 
-        @media (max-width: 700px) {
-            .collection-item { width: 75px; }
-            .item-emoji { font-size: 62px; }
-            .shelf-plank { height: 14px; top: -12px; }
-            .shelf-plank2 { top: -48px; }
+        .flex-header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px 0 0;
+        }
+
+        @media (max-width: 780px) {
+            .mega-emoji { font-size: 50px; }
+            .mega-item { padding: 10px; min-width: 80px; }
+            .mega-name { font-size: 10px; }
         }
     </style>
 </head>
 <body>
-<div class="collection-world" id="collectionWorld">
-    <!-- Fondo explosivo con personajes de FNAF y Pokémon -->
-    <div class="bg-characters">
-        <span>🐻 Freddy</span> <span>🐰 Bonnie</span> <span>🐥 Chica</span> <span>🦊 Foxy</span>
-        <span>⚡ Pikachu</span> <span>🔥 Charmander</span> <span>💧 Squirtle</span> <span>🍃 Bulbasaur</span>
-        <span>🎸</span> <span>🌙 Mangle</span> <span>✨ Mew</span> <span>🔮</span>
-        <span>🎲</span> <span>🐺</span> <span>⚙️</span> <span>⭐</span>
+<div class="epic-collection" id="epicWorld">
+    <div class="bg-craziness">
+        <!-- Personajes FNAF + Pokémon en el fondo -->
+        <span>🐻</span><span>🐰</span><span>🐥</span><span>🦊</span><span>👑</span><span>🧁</span>
+        <span>🧸</span><span>🐇</span><span>🐤</span><span>🕷️</span><span>🎈</span><span>🎭</span>
+        <span>👻</span><span>🐺</span><span>💀</span><span>🔥</span><span>🌙</span><span>🤖</span>
+        <span>⚡</span><span>🔥</span><span>💧</span><span>🍃</span><span>🐉</span><span>🎲</span>
+        <span>🧸</span><span>🐻‍❄️</span><span>🦊</span><span>🐕</span><span>🐈</span><span>🐉</span>
+        <span>🌟</span><span>💀</span><span>🔪</span><span>🎸</span><span>🪦</span><span>🧸</span>
     </div>
 
-    <div class="collector-shelf">
-        <div class="shelf-plank"></div>
-        <div class="shelf-plank shelf-plank2"></div>
+    <div class="flex-header">
+        <div class="counter-badge" id="epicCounter">🔥 0 / 6 💀</div>
     </div>
 
-    <div class="items-layer" id="itemsLayer"></div>
+    <div class="mega-layer" id="megaLayer"></div>
 
     <div class="message-panel" id="messagePanel">
-        <div class="romantic-text" id="msgText">🧸 Toca cada figura de FNAF o Pokémon... cada una esconderá un mensaje ardiente y salvaje para ti, Ryoko 🔥💀⚡</div>
+        <div class="romantic-text" id="msgText">🧸🔥 Toca cada personaje legendario (FNAF + Pokémon)… cada uno esconde una confesión salvaje para ti, Ryoko. 🔥💀⚡</div>
         <div id="poemDisplay" style="display: none;" class="poem-area"></div>
     </div>
-    <div class="item-counter" id="itemCounter">🎮 0 / 6 🔥</div>
 </div>
 
 <script>
     (function() {
-        // 6 personajes: mezcla de FNAF + Pokémon + una Pokéball
-        const itemEmojis = ["🐻", "🦊", "⚡", "🎸", "🐺", "🎲"];
-        const itemNames = ["Freddy Fazbear", "Foxy el Pirata", "Pikachu", "Mangle", "Lucario", "Pokéball"];
+        // 6 personajes representando la colección masiva: Freddy, Foxy, Mangle, Springtrap, Circus Baby, Pikachu + Pokéball
+        const epicEmojis = ["🐻", "🦊", "🕷️", "💀", "🤖", "⚡"];
+        const epicNames = ["Freddy + Golden Freddy", "Foxy & Phantom Foxy", "Mangle + The Puppet", "Springtrap & Scraptrap", "Circus Baby + Ennard", "Pikachu + Pokéball"];
         
-        // Mensajes loquísimos, románticos, pasionales y controlando la situación (a ella le gusta que la controlen)
-        const itemMessages = [
-            "🐻 Ryoko, Freddy vio cómo te miro cuando no estás mirando. Me encanta cuando pones esa cara sumisa y tus ojitos brillan porque sabes que voy a tomar el control. Tus labios tiemblan cuando te susurro al oído. Eres mi osito salvaje, mi juguete favorito. 💜🔥",
-            "🦊 Foxy te observa, Ryoko. Le encanta cómo caminas, cómo ríes. Pero a mí me vuelve loco cuando me dejas dominar la partida. Tu risa hace que las estrellas se rían con nosotros. Esa noche la luna se escondió de lo hermosa que estabas. Eres mi pirata favorita, mi botín eterno. 🌙💋",
-            "⚡ Pikachu, mi rayo. Cuando sonríes, los relámpagos se ponen celosos. Ryoko, me encanta cuando cierras los ojos y confías en mí, sabiendo que voy a cuidarte mientras te controlo suavemente. Tu cuerpo es mi campo de batalla favorito. Te adoro con toda mi electricidad. 🔥🎸",
-            "🎸 Mangle es un rompecabezas, como tus deseos. Ryoko, me fascina cómo dejas que te guíe, cómo te entregas sin miedo. Tu sonrisa puede revivir a los muertos y tus gemidos pueden derrumbar paredes. Esta noche quiero que seamos como dos animatrónicos en llamas. Te amo. 💀💜",
-            "🐺 Lucario siente tu aura ardiente. Ryoko, tu belleza es de otro mundo. Cuando me dejas tomar el mando, siento que el universo nos aplaude. Tus curvas son legendarias, tu boca es mi gimnasio favorito. Quiero oírte reír mientras las estrellas se alinean solo para ti. Eres mi trofeo, mi dueña y mi sumisa perfecta. 🌟🔥",
-            "🎲 Pokéball, te atrapé, Ryoko. Y no pienso soltarte nunca. Me encanta cuando pones esa cara de 'haz lo que quieras'. Porque yo quiero hacerte feliz, adorarte y que el mundo entero sepa que sonríes porque soy yo quien te controla. Tu risa es mi movimiento especial, tu cuerpo mi gimnasio eterno. A+R = FOREVER 💯💜"
+        // Mensajes súper locos y pasionales (con control y entrega)
+        const epicMessages = [
+            "🔥 Ryoko, todos los animatrónicos se quedan helados cuando caminas. Freddy, Bonnie, Chica, incluso Golden Freddy saben que eres tú la que controla mi corazón. Me encanta cuando me dejas tomar la iniciativa y siento cómo tu cuerpo se entrega. Tu sonrisa enciende la pista de baile y la luna se rinde ante ti. Eres mi cupcake prohibido. 💜💀",
+            "🦊 Foxy y sus fantasmas se esconden, pero yo no puedo esconder lo que siento. Ryoko, esa mirada tuya cuando digo 'quieta' me desarma. Tu risa hace que los phantom animatronics bailen de alegría. Me fascina cómo te abandonas al placer de ser dominada. Tus labios son mi botín favorito. Te adoro mi loba. 🌙🔥",
+            "🕷️ Mangle, el Puppet y todo el FNaF 2 saben que eres única. Ryoko, cuando ríes, los withered se alegran. Tu belleza es como un rompecabezas que desarmo noche a noche. Me encanta cómo me dejas atarte suavemente a mi voluntad. Eres mi Marioneta favorita, mi show eterno. 💋🎭",
+            "💀 Springtrap, Scraptrap y todos los phantoms aplauden tu belleza gótica. Ryoko, tus caderas son como una atracción mortal. Cuando susurro en tu oído y siento que tiemblas, los muertos vivientes nos envidian. Tu sonrisa podría revivir a los animatronics rotos. Eres mi pesadilla favorita, mi amor eterno. 🔥🧸",
+            "🤖 Circus Baby, Ballora, Funtime Freddy y Ennard se quedan callados cuando tú apareces. Ryoko, tu cuerpo es una máquina perfecta de placer. Me encanta cómo cierras los ojos cuando tomo el mando y cómo tu risa llena toda la galería. Eres mi estrella de Sister Location, mi juego favorito. TE AMO con todos los circuitos. 💜🤖",
+            "⚡ Pikachu, Charmander y todos los Pokémon se electrocutan al ver tu sonrisa. Ryoko, eres mi Pokéball dorada. Me fascina cuando dices 'haz lo que quieras' porque sabes que siempre te voy a cuidar y adorar. Tu cuerpo es mi gimnasio, tus gemidos mi música. Esta Pokéball te atrapó para siempre. A+R = FOREVER 🔥⚡💀"
         ];
 
-        const romanticPoem = `🔥🖤 RYOKO, MI COLECCIÓN PROHIBIDA 🖤🔥
+        const wildPoem = `💀🔥 RYOKO, MI LEYENDA PROHIBIDA 🔥💀
 
-La noche en la feria, entre peluches y monstruos,
-apareciste tú, más aterradora y bella que Freddy.
-Tus ojos rojos como los de Foxy,
-pero tu sonrisa derrite todo el hielo polar.
+En el museo de los animatrónicos rotos,
+apareciste tú con una sonrisa que paraliza a Springtrap.
+Tus ojos como dos Phantom Shadows,
+tu boca como un cupcake endemoniado que quiero morder.
 
-Ryoko, cuando me dejas controlar tus pasos,
-siento que el mundo entero se postra a tus pies.
-Eres la reina de esta colección salvaje,
-y yo el coleccionista loco que te atrapó con su red.
+Ryoko, me encanta cómo cedes el control,
+cómo tu risa se mezcla con el ruido de las máquinas viejas.
+Eres más adictiva que cualquier juego de Freddy,
+más letal que Ennard, más dulce que Ballora.
 
-Tu risa hace que los Pokémon salgan de sus pokeballs,
-tu mirada hace temblar a los animatrónicos más rudos.
-Me encanta cómo te entregas, cómo tiemblas de emoción,
-cuando susurro: «tranquila, yo llevo el control».
+Cuando cierro los ojos veo tu silueta entre los withered,
+y todos los Pokémon se quedan en sus balls mirando.
+Tu belleza congela a los phantoms y derrite mi pecho,
+eres mi gimnasio, mi noche en la pizzería, mi recompensa.
 
-Las estrellas se alinean para verte sonreír,
-la luna se esconde porque tu brillo la hace huir.
-Tus labios son mi centro de batalla favorito,
-tus caderas mi gimnasio legendario e infinito.
+Las estrellas del cielo se apagan si tú no sonríes,
+la luna se esconde porque tu brillo la avergüenza.
+Cada vez que me dejas tomar las riendas
+siento que el universo entero se rinde a tus piernas.
 
-Eres la combinación perfecta entre dulzura y fiereza,
-me vuelves loco con cada una de tus piezas.
-A + R = FOREVER, lo grabo con fuego en cada máquina,
-porque eres mi juego favorito, mi obsesión más auténtica.
+Eres mi Circus Baby, mi Mangle, mi Pokéball eterna,
+no necesito más personajes, solo tu boquita que me gobierna.
+A + R = FOREVER, lo grabo en cada arcade,
+porque eres mi colección completa, mi más salvaje upgrade.
 
-🔥 TE AMO RYOKO, MI CONTROL, MI LOCURA, MI PODER 💜
-🌙 TE ADORO ALMA MÍA, ERES MI JUGUETE ETERNO EN ESTE AMANECER.`;
+🔥💜 TE AMO RYOKO, MI CONTROL, MI LOCURA, MI JUEGO INFINITO 💀🌙`;
 
-        const itemsData = [];
         let itemsClicked = 0;
         let poemRevealed = false;
-        const counterSpan = document.getElementById("itemCounter");
+        const counterSpan = document.getElementById("epicCounter");
         const msgTextDiv = document.getElementById("msgText");
         const poemDisplayDiv = document.getElementById("poemDisplay");
+        const container = document.getElementById("epicWorld");
 
-        function createCollectibles() {
-            const layer = document.getElementById("itemsLayer");
+        function createEpicItems() {
+            const layer = document.getElementById("megaLayer");
             layer.innerHTML = "";
-            const positions = [
-                {l: 8, t: 58},   // estante inferior izquierdo
-                {l: 26, t: 58},  
-                {l: 44, t: 58},  
-                {l: 62, t: 58},  
-                {l: 80, t: 58},  
-                {l: 48, t: 32}    // estante superior: Pokéball principal
-            ];
             for(let i = 0; i < 6; i++) {
-                const colDiv = document.createElement("div");
-                colDiv.className = "collection-item";
-                colDiv.style.left = `${positions[i].l}%`;
-                colDiv.style.top = `${positions[i].t}%`;
-                colDiv.innerHTML = `<div class="item-emoji" style="color: #ffe0c0; text-shadow: 0 0 15px #ff7040;">${itemEmojis[i]}</div>`;
-                colDiv.setAttribute("data-index", i);
-                colDiv.addEventListener("click", (e) => {
+                const card = document.createElement("div");
+                card.className = "mega-item";
+                card.setAttribute("data-idx", i);
+                card.innerHTML = `
+                    <div class="mega-emoji">${epicEmojis[i]}</div>
+                    <div class="mega-name">${epicNames[i]}</div>
+                `;
+                card.addEventListener("click", (e) => {
                     e.stopPropagation();
-                    handleItemClick(i, colDiv);
+                    handleEpicClick(i, card);
                 });
-                layer.appendChild(colDiv);
-                itemsData.push({ element: colDiv, clicked: false, msg: itemMessages[i] });
+                layer.appendChild(card);
             }
         }
 
-        function handleItemClick(index, element) {
-            if(itemsData[index].clicked) {
-                msgTextDiv.innerHTML = `🎲 Ryoko, ya desbloqueaste esta figura... atrapa otro personaje de la colección 🔥💀`;
+        function handleEpicClick(idx, element) {
+            if(element.getAttribute("data-clicked") === "true") {
+                msgTextDiv.innerHTML = `💀 Ryoko, ya liberaste a este personaje... atrapa otro de la colección épica 🔥⚡`;
                 return;
             }
-            itemsData[index].clicked = true;
+            element.setAttribute("data-clicked", "true");
             itemsClicked++;
-            counterSpan.innerHTML = `🎮 ${itemsClicked} / 6 🔥`;
+            counterSpan.innerHTML = `🔥 ${itemsClicked} / 6 💀`;
             
-            const spicyMsg = itemsData[index].msg;
-            msgTextDiv.innerHTML = `🌙💀 ${spicyMsg} 💀🌙`;
+            const spicyMsg = epicMessages[idx];
+            msgTextDiv.innerHTML = `🌙💀🔥 ${spicyMsg} 🔥💀🌙`;
             
-            element.style.transform = "scale(0.85)";
-            setTimeout(() => { element.style.transform = ""; }, 150);
-            element.style.opacity = "0.55";
-            element.style.filter = "grayscale(0.25)";
+            element.style.transform = "scale(0.88)";
+            element.style.opacity = "0.6";
+            element.style.filter = "grayscale(0.3)";
             element.style.pointerEvents = "none";
+            setTimeout(() => { element.style.transform = ""; }, 200);
             
             if(itemsClicked === 6 && !poemRevealed) {
-                revealCrazyPoem();
+                revealEpicPoem();
             }
         }
 
-        function revealCrazyPoem() {
+        function revealEpicPoem() {
             if(poemRevealed) return;
             poemRevealed = true;
             msgTextDiv.style.display = "none";
             poemDisplayDiv.style.display = "block";
-            poemDisplayDiv.innerHTML = `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-style: normal; font-weight: 500; text-align: center; line-height: 1.5; font-size: 0.85rem;">${romanticPoem.replace(/\n/g, '<br>')}</div><br><div style="text-align:center; font-size:1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-style: normal;">🎲 A + R = FOREVER EN CADA GAME OVER 🔥<br>💜 TE AMO RYOKO, MI COLECCIÓN SALVAJE 💜</div>`;
-            counterSpan.style.background = "#b0306edd";
-            counterSpan.innerHTML = "💀 COLECCIÓN COMPLETA 💀";
+            poemDisplayDiv.innerHTML = `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-style: normal; font-weight: 500; text-align: center; line-height: 1.5; font-size: 0.85rem;">${wildPoem.replace(/\n/g, '<br>')}</div><br><div style="text-align:center; font-size:0.95rem; font-family: monospace;">🎮 A + R = FOREVER EN CADA JUEGO 🔥<br>💜 TE AMO RYOKO, MI LEYENDA VIVA 💜</div>`;
+            counterSpan.style.background = "#b0305edd";
+            counterSpan.innerHTML = "💀 COLECCIÓN COMPLETA 🔥";
             for(let i=0;i<30;i++) {
-                setTimeout(() => createSparkle(), i*70);
+                setTimeout(() => createEpicSpark(), i*70);
             }
         }
 
-        function createSparkle() {
+        function createEpicSpark() {
             const spark = document.createElement("div");
-            spark.innerText = ["🔥💀","🎲💜","🤘🔥","⚡❤️"][Math.floor(Math.random()*4)];
+            spark.innerText = ["🔥💀","🎲💜","🤖⚡","🧸❤️"][Math.floor(Math.random()*4)];
             spark.style.position = "absolute";
-            spark.style.fontSize = 25 + Math.random() * 28 + "px";
+            spark.style.fontSize = 26 + Math.random() * 28 + "px";
             spark.style.left = Math.random() * 100 + "%";
             spark.style.bottom = "0px";
             spark.style.pointerEvents = "none";
-            spark.style.zIndex = "100";
+            spark.style.zIndex = "200";
             spark.style.opacity = "0.9";
-            spark.style.transition = "all 3.2s ease-out";
-            document.querySelector(".collection-world").appendChild(spark);
+            spark.style.transition = "all 3.5s ease-out";
+            container.appendChild(spark);
             requestAnimationFrame(() => {
-                spark.style.transform = `translateY(-${window.innerHeight * 0.75}px) rotate(15deg)`;
+                spark.style.transform = `translateY(-${window.innerHeight * 0.8}px) rotate(15deg)`;
                 spark.style.opacity = "0";
             });
-            setTimeout(() => spark.remove(), 3200);
+            setTimeout(() => spark.remove(), 3500);
         }
 
-        function addRippleEffect(e) {
-            const rect = document.querySelector(".collection-world").getBoundingClientRect();
-            const ripple = document.createElement("div");
-            ripple.innerText = "🔥💜⚡";
-            ripple.style.position = "absolute";
-            ripple.style.left = (e.clientX - rect.left) + "px";
-            ripple.style.top = (e.clientY - rect.top) + "px";
-            ripple.style.fontSize = "36px";
-            ripple.style.pointerEvents = "none";
-            ripple.style.zIndex = "100";
-            ripple.style.transform = "translate(-50%, -50%)";
-            ripple.style.opacity = "0.9";
-            ripple.style.whiteSpace = "nowrap";
-            ripple.style.transition = "all 0.8s ease-out";
-            document.querySelector(".collection-world").appendChild(ripple);
+        function addGlobalRipple(e) {
+            const rect = container.getBoundingClientRect();
+            const rippleDiv = document.createElement("div");
+            rippleDiv.innerText = "🔥💀⚡";
+            rippleDiv.style.position = "absolute";
+            rippleDiv.style.left = (e.clientX - rect.left) + "px";
+            rippleDiv.style.top = (e.clientY - rect.top) + "px";
+            rippleDiv.style.fontSize = "34px";
+            rippleDiv.style.pointerEvents = "none";
+            rippleDiv.style.zIndex = "200";
+            rippleDiv.style.transform = "translate(-50%, -50%)";
+            rippleDiv.style.opacity = "0.9";
+            rippleDiv.style.whiteSpace = "nowrap";
+            rippleDiv.style.transition = "all 0.7s ease-out";
+            container.appendChild(rippleDiv);
             setTimeout(() => {
-                ripple.style.opacity = "0";
-                ripple.style.transform = "translate(-50%, -50%) scale(1.6)";
-                setTimeout(() => ripple.remove(), 800);
+                rippleDiv.style.opacity = "0";
+                rippleDiv.style.transform = "translate(-50%, -50%) scale(1.7)";
+                setTimeout(() => rippleDiv.remove(), 800);
             }, 30);
         }
 
-        createCollectibles();
-        const container = document.querySelector(".collection-world");
+        createEpicItems();
         container.addEventListener("click", (e) => {
-            if(e.target === container || e.target.classList.contains("collector-shelf") || e.target.classList.contains("bg-characters")) {
-                addRippleEffect(e);
+            if(e.target === container || e.target.classList.contains("bg-craziness") || e.target.classList.contains("epic-collection")) {
+                addGlobalRipple(e);
             }
         });
         container.addEventListener("touchstart", (e) => {
-            if(e.target === container || e.target.classList.contains("collector-shelf") || e.target.classList.contains("bg-characters")) {
+            if(e.target === container || e.target.classList.contains("bg-craziness") || e.target.classList.contains("epic-collection")) {
                 const touch = e.touches[0];
-                addRippleEffect(touch);
+                addGlobalRipple(touch);
             }
         });
     })();
