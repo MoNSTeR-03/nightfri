@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Colección de Finger Toys - Ryoko 💜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1a0a2a 0%, #0a0515 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            padding: 12px;
+        }
+
+        .toy-world {
+            position: relative;
+            width: 1300px;
+            max-width: 100%;
+            height: 90vh;
+            min-height: 580px;
+            background: radial-gradient(circle at 30% 20%, #2a1a3a, #0a0518);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.1);
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid rgba(200, 150, 255, 0.5);
+        }
+
+        /* Estilo de estante para los juguetes */
+        .shelf {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(145deg, #6b4c3b, #4a2a1a);
+            border-radius: 30px 30px 0 0;
+            box-shadow: inset 0 8px 12px rgba(0,0,0,0.4), 0 -2px 0 #d4a56e;
+            z-index: 5;
+        }
+
+        .shelf-board {
+            position: absolute;
+            top: -15px;
+            left: 5%;
+            width: 90%;
+            height: 22px;
+            background: #c28a5c;
+            border-radius: 12px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            z-index: 6;
+        }
+
+        .shelf-board2 {
+            top: -55px;
+            width: 80%;
+            left: 10%;
+        }
+
+        /* Fondo de pared con textura suave */
+        .wall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 30%, #2e1a3e, #140a20);
+            z-index: 1;
+        }
+
+        /* Juguetes (elementos clickeables) */
+        .toys-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .toy-item {
+            position: absolute;
+            pointer-events: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 12px 20px rgba(0,0,0,0.4));
+            transition: transform 0.25s ease, filter 0.2s;
+            width: clamp(65px, 15vw, 95px);
+            text-align: center;
+            z-index: 25;
+        }
+
+        .toy-item:active {
+            transform: scale(0.92);
+        }
+
+        .toy-emoji {
+            font-size: clamp(55px, 14vw, 80px);
+            display: block;
+            transition: all 0.2s;
+            text-shadow: 0 0 15px rgba(255,200,255,0.5);
+            background: rgba(0,0,0,0.2);
+            border-radius: 35%;
+            padding: 8px;
+        }
+
+        /* Panel de mensajes */
+        .message-panel {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(20, 10, 35, 0.94);
+            backdrop-filter: blur(20px);
+            border-radius: 36px;
+            padding: 18px 22px;
+            color: #fff0e6;
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid rgba(255, 180, 220, 0.7);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.6), 0 0 30px rgba(180, 100, 255, 0.3);
+            z-index: 40;
+            max-height: 32vh;
+            overflow-y: auto;
+            line-height: 1.5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-shadow: 0 0 6px rgba(255,100,200,0.3);
+        }
+
+        .romantic-text {
+            font-size: clamp(0.85rem, 3.8vw, 1.15rem);
+            letter-spacing: 0.2px;
+        }
+
+        .poem-area {
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 32px;
+            padding: 14px 18px;
+            margin-top: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            white-space: pre-line;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+            max-height: 36vh;
+            overflow-y: auto;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 180, 220, 0.5);
+        }
+
+        .toy-counter {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: rgba(40, 15, 60, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 6px 15px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #ffdbff;
+            font-family: monospace;
+            font-size: 1rem;
+            z-index: 45;
+            border: 1px solid #dd99ff;
+            box-shadow: 0 2px 8px black;
+            letter-spacing: 1px;
+        }
+
+        /* decoración de estrellitas */
+        .star-deco {
+            position: absolute;
+            color: rgba(255,220,180,0.3);
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @media (max-width: 700px) {
+            .toy-item { width: 70px; }
+            .toy-emoji { font-size: 58px; }
+            .shelf-board { height: 14px; top: -10px; }
+            .shelf-board2 { top: -40px; }
+        }
+
+        @keyframes bounceToy {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-6px); }
+        }
+    </style>
+</head>
+<body>
+<div class="toy-world" id="toyWorld">
+    <div class="wall"></div>
+    <!-- Estantes para los finger toys -->
+    <div class="shelf">
+        <div class="shelf-board"></div>
+        <div class="shelf-board shelf-board2"></div>
+    </div>
+    
+    <!-- Estrellas decorativas -->
+    <div class="star-deco" style="top: 15%; left: 10%;">⭐💜</div>
+    <div class="star-deco" style="top: 25%; left: 85%;">✨🌙</div>
+    <div class="star-deco" style="top: 45%; left: 18%;">💫🎀</div>
+    
+    <!-- Capa de juguetes interactivos -->
+    <div class="toys-layer" id="toysLayer"></div>
+    
+    <div class="message-panel" id="messagePanel">
+        <div class="romantic-text" id="msgText">🧸 Toca cada finger toy... cada uno esconderá un mensaje explosivo de pasión para ti, Ryoko 💜✨</div>
+        <div id="poemDisplay" style="display: none;" class="poem-area"></div>
+    </div>
+    <div class="toy-counter" id="toyCounter">🧸 0 / 6 💖</div>
+</div>
+
+<script>
+    (function() {
+        // 6 Finger Toys (incluyendo "Night Friend" y otros adorables)
+        const toyEmojis = ["🧸", "🐱", "🐰", "🌙", "🦄", "🐶"];
+        const toyNames = ["Osito Teddy", "Gatito Lunar", "Conejito Mágico", "Night Friend 🌙", "Unicornio Estelar", "Perrito Fiel"];
+        
+        // Mensajes súper románticos y pasionales (como los anteriores)
+        const toyMessages = [
+            "🧸 Ryoko, cada vez que toco este osito me acuerdo de lo suave que es tu piel. Quiero apretarte entre mis brazos como sostengo este juguete, pero con mucho más fuego. Tu risa es mi canción favorita y tus labios... tus labios son mi vicio. 🔥 Te adoro, muñeca mía. 💜",
+            "🐱 Gatito Lunar, así te veo: salvaje, hermosa y con una mirada que me derrite. Ryoko, cuando me miras así, siento que el universo se detiene. Quiero acariciar tu cabello mientras la luna nos observa. Eres mi dulce pesadilla y mi mejor sueño. 🌙✨",
+            "🐰 Conejito mágico, saltas en mi corazón cada vez que sonríes. Ryoko, tu cuerpo es una obra de arte que quisiera explorar sin prisa. Déjame besarte el cuello mientras susurro lo mucho que me vuelves loco. Te amo con toda mi alma, mi conejita traviesa. 💋",
+            "🌙 Night Friend — este es mi favorito, porque tú eres mi compañera de noche, Ryoko. Cuando la luna sale, solo pienso en ti. Tus curvas son dunas que quiero recorrer, tus manos heladas buscan mi pecho y allí encuentran fuego. Gracias por ser mi noche eterna. 🔥💜",
+            "🦄 Unicornio estelar, única como tú. Ryoko, no hay nadie en este mundo que brille como tú. Cuando ríes, las estrellas se ponen celosas. Quiero abrazarte fuerte mientras el viento nos abraza. Eres mi fantasía hecha realidad. TE AMO con locura. 🌟",
+            "🐶 Perrito fiel, así soy yo contigo, Ryoko. Siempre a tu lado, siempre esperando tu caricia. Cuando tocas mi mano, siento electricidad pura. Tus labios saben a caramelo y tu piel es mi obsesión. A+R = PARA SIEMPRE. Eres mi todo. 💖🌙"
+        ];
+
+        const romanticPoem = `🌙✨ RYOKO, MI COLECCIÓN ETERNA ✨🌙
+
+Tus dedos acarician mis sentidos como estos juguetes,
+pero tú eres mi juguete favorito, mi passión secreta.
+Tu sonrisa es más dulce que mil ositos de peluche,
+tu mirada me atrapa como un lazo infinito.
+
+Cuando ríes, los Night Friend bailan de alegría,
+porque tu risa revive hasta las noches más frías.
+Tu cabello es hilo de seda que quiero enrollar en mis dedos,
+tus mejillas son dos peluches rosas que quiero morder.
+
+Ryoko, colecciono momentos contigo como tesoros,
+cada abrazo tuyo vale más que todos los juguetes del mundo.
+Tus caderas son mi balance, tu boca mi perdición,
+eres la figura más hermosa en mi colección.
+
+Por las noches te imagino cerca, tu calor en mi pecho,
+y siento que el universo entero cabe en tu cuerpo.
+Night Friend se esconde porque tú brillas más que él,
+eres mi estrella favorita, mi caramelo, mi pastel.
+
+Te adoro Ryoko, más que a todos los finger toys,
+eres mi juguete eterno, mi razón, mi voz.
+A + R = FOREVER, lo guardo en mi estante secreto,
+porque mi amor por ti nunca estará en un cajón incompleto.
+
+💜 TE AMO RYOKO, MI COLECCIÓN, MI VIDA, MI FUEGO 🌙
+🧸 TE ADORO MI ALMA, ERES MI JUGUETE PREFERIDO EN ESTE JUEGO.`;
+
+        const toysData = [];
+        let toysClicked = 0;
+        let poemRevealed = false;
+        const counterSpan = document.getElementById("toyCounter");
+        const msgTextDiv = document.getElementById("msgText");
+        const poemDisplayDiv = document.getElementById("poemDisplay");
+
+        function createToys() {
+            const layer = document.getElementById("toysLayer");
+            layer.innerHTML = "";
+            // Posiciones distribuidas en los estantes
+            const positions = [
+                {l: 12, t: 58},   // estante inferior izquierdo
+                {l: 28, t: 58},   // inferior 
+                {l: 48, t: 58},   // inferior centro
+                {l: 68, t: 58},   // inferior derecha
+                {l: 85, t: 58},   // inferior extremo
+                {l: 35, t: 32}    // estante superior (Night Friend destacado)
+            ];
+            for(let i = 0; i < 6; i++) {
+                const toyDiv = document.createElement("div");
+                toyDiv.className = "toy-item";
+                toyDiv.style.left = `${positions[i].l}%`;
+                toyDiv.style.top = `${positions[i].t}%`;
+                toyDiv.innerHTML = `<div class="toy-emoji" style="color: #ffe6f0; text-shadow: 0 0 12px #ffaae6;">${toyEmojis[i]}</div>`;
+                toyDiv.setAttribute("data-index", i);
+                toyDiv.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    handleToyClick(i, toyDiv);
+                });
+                layer.appendChild(toyDiv);
+                toysData.push({ element: toyDiv, clicked: false, msg: toyMessages[i] });
+            }
+        }
+
+        function handleToyClick(index, element) {
+            if(toysData[index].clicked) {
+                msgTextDiv.innerHTML = `💜 Ryoko, ya desbloqueaste este juguete... prueba otro finger toy de la colección 🧸✨`;
+                return;
+            }
+            toysData[index].clicked = true;
+            toysClicked++;
+            counterSpan.innerHTML = `🧸 ${toysClicked} / 6 💖`;
+            
+            const romanticMsg = toysData[index].msg;
+            msgTextDiv.innerHTML = `🎀🔥 ${romanticMsg} 🔥🎀`;
+            
+            // Animación de clic y deshabilitar
+            element.style.transform = "scale(0.85)";
+            setTimeout(() => { element.style.transform = ""; }, 150);
+            element.style.opacity = "0.6";
+            element.style.filter = "grayscale(0.2)";
+            element.style.pointerEvents = "none";
+            
+            if(toysClicked === 6 && !poemRevealed) {
+                revealToyPoem();
+            }
+        }
+
+        function revealToyPoem() {
+            if(poemRevealed) return;
+            poemRevealed = true;
+            msgTextDiv.style.display = "none";
+            poemDisplayDiv.style.display = "block";
+            poemDisplayDiv.innerHTML = `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-style: normal; font-weight: 500; text-align: center; line-height: 1.5; font-size: 0.85rem;">${romanticPoem.replace(/\n/g, '<br>')}</div><br><div style="text-align:center; font-size:1rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-style: normal;">🧸 A + R = FOREVER EN CADA JUGUETE 🌙<br>💜 TE AMO RYOKO, MI COLECCIÓN ETERNA 💜</div>`;
+            counterSpan.style.background = "#c06effdd";
+            counterSpan.innerHTML = "💖 COLECCIÓN COMPLETA 💖";
+            for(let i=0;i<28;i++) {
+                setTimeout(() => createHeartSparkle(), i*70);
+            }
+        }
+
+        function createHeartSparkle() {
+            const heartDiv = document.createElement("div");
+            heartDiv.innerText = ["🧸💜","🌙🔥","🎀💋","✨❤️"][Math.floor(Math.random()*4)];
+            heartDiv.style.position = "absolute";
+            heartDiv.style.fontSize = 24 + Math.random() * 28 + "px";
+            heartDiv.style.left = Math.random() * 100 + "%";
+            heartDiv.style.bottom = "0px";
+            heartDiv.style.pointerEvents = "none";
+            heartDiv.style.zIndex = "100";
+            heartDiv.style.opacity = "0.9";
+            heartDiv.style.transition = "all 3s ease-out";
+            document.querySelector(".toy-world").appendChild(heartDiv);
+            requestAnimationFrame(() => {
+                heartDiv.style.transform = `translateY(-${window.innerHeight * 0.7}px) rotate(12deg)`;
+                heartDiv.style.opacity = "0";
+            });
+            setTimeout(() => heartDiv.remove(), 3000);
+        }
+
+        function addToyRipple(e) {
+            const rect = document.querySelector(".toy-world").getBoundingClientRect();
+            const ripple = document.createElement("div");
+            ripple.innerText = "🧸💜🌙";
+            ripple.style.position = "absolute";
+            ripple.style.left = (e.clientX - rect.left) + "px";
+            ripple.style.top = (e.clientY - rect.top) + "px";
+            ripple.style.fontSize = "32px";
+            ripple.style.pointerEvents = "none";
+            ripple.style.zIndex = "100";
+            ripple.style.transform = "translate(-50%, -50%)";
+            ripple.style.opacity = "0.9";
+            ripple.style.whiteSpace = "nowrap";
+            ripple.style.transition = "all 0.8s ease-out";
+            document.querySelector(".toy-world").appendChild(ripple);
+            setTimeout(() => {
+                ripple.style.opacity = "0";
+                ripple.style.transform = "translate(-50%, -50%) scale(1.5)";
+                setTimeout(() => ripple.remove(), 800);
+            }, 30);
+        }
+
+        createToys();
+        const toyContainer = document.querySelector(".toy-world");
+        toyContainer.addEventListener("click", (e) => {
+            if(e.target === toyContainer || e.target.classList.contains("wall") || e.target.classList.contains("shelf")) {
+                addToyRipple(e);
+            }
+        });
+        toyContainer.addEventListener("touchstart", (e) => {
+            if(e.target === toyContainer || e.target.classList.contains("wall") || e.target.classList.contains("shelf")) {
+                const touch = e.touches[0];
+                addToyRipple(touch);
+            }
+        });
+    })();
+</script>
+</body>
+</html>
