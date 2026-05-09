@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Colección Épica: FNAF + Pokémon 🔥 Ryoko</title>
+    <title>Colección Legendaria: RYOKO 🔥 FNAF + Pokémon</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
         }
 
         body {
-            background: linear-gradient(145deg, #0a050f 0%, #020108 100%);
+            background: linear-gradient(145deg, #0a020f 0%, #020005 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -30,102 +30,145 @@
             max-width: 100%;
             height: 90vh;
             min-height: 620px;
-            background: radial-gradient(circle at 30% 40%, #1a1025, #05020a);
+            background: radial-gradient(circle at 30% 40%, #1a1028, #030108);
             border-radius: 48px 48px 32px 32px;
             box-shadow: 0 25px 40px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.08);
             overflow-y: auto;
             overflow-x: hidden;
             cursor: pointer;
-            border: 2px solid rgba(255, 100, 80, 0.5);
+            border: 2px solid rgba(255, 80, 100, 0.6);
             scrollbar-width: thin;
         }
 
-        /* fondo con personajes diminutos (efecto loco) */
-        .bg-craziness {
+        /* fondo dinámico con personajes y RYOKO + corazones */
+        .bg-dynamic {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             min-height: 100%;
             z-index: 1;
-            opacity: 0.2;
             pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-char {
+            position: absolute;
             font-size: 28px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 30px;
+            opacity: 0.25;
+            animation: floatSlow 20s infinite linear;
+            white-space: nowrap;
         }
 
-        .bg-craziness span {
-            margin: 6px;
-            transform: rotate(var(--rot, -3deg));
+        .ryoko-text {
+            position: absolute;
+            font-size: 45px;
+            font-weight: bold;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            color: rgba(255, 80, 120, 0.2);
+            text-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: 4px;
+            animation: pulseGlow 4s infinite alternate;
         }
 
-        /* contenedor de personajes clickeables (6 principales) */
+        .heart-bg {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.2;
+            animation: floatHeart 12s infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateX(-10%) translateY(0px); }
+            100% { transform: translateX(110%) translateY(50px); }
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 5px rgba(255,80,120,0.2); opacity: 0.15; }
+            100% { text-shadow: 0 0 25px rgba(255,80,120,0.5); opacity: 0.3; }
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
+            100% { transform: translateY(-30px) rotate(10deg); opacity: 0.3; }
+        }
+
+        /* contenedor de personajes clickeables */
         .mega-layer {
             position: relative;
             z-index: 20;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px;
-            padding: 40px 20px 180px 20px;
+            gap: 28px;
+            padding: 50px 20px 200px 20px;
             pointer-events: none;
         }
 
         .mega-item {
             pointer-events: auto;
             cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            border-radius: 48px;
-            padding: 15px 18px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            border-radius: 56px;
+            padding: 18px 22px;
             text-align: center;
             transition: all 0.25s ease;
-            border: 1px solid rgba(255,120,80,0.6);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            min-width: 110px;
+            border: 1.5px solid rgba(255, 100, 80, 0.7);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 15px rgba(255,50,50,0.3);
+            min-width: 120px;
+            animation: itemGlow 3s infinite alternate;
+        }
+
+        @keyframes itemGlow {
+            0% { box-shadow: 0 0 5px rgba(255,80,80,0.3); border-color: rgba(255,100,80,0.5); }
+            100% { box-shadow: 0 0 25px rgba(255,50,50,0.6); border-color: rgba(255,80,80,0.9); }
         }
 
         .mega-item:active {
-            transform: scale(0.94);
-            background: rgba(0,0,0,0.7);
+            transform: scale(0.93);
+            background: rgba(0, 0, 0, 0.85);
         }
 
         .mega-emoji {
-            font-size: 70px;
+            font-size: 75px;
             display: block;
-            text-shadow: 0 0 20px #ff6644;
+            text-shadow: 0 0 25px #ff5533;
+            filter: drop-shadow(0 4px 8px black);
         }
 
         .mega-name {
             font-size: 13px;
             color: #ffccaa;
-            margin-top: 8px;
+            margin-top: 10px;
             font-weight: bold;
             letter-spacing: 1px;
+            background: rgba(0,0,0,0.6);
+            padding: 4px 8px;
+            border-radius: 40px;
         }
 
         .message-panel {
             position: sticky;
             bottom: 15px;
             margin: 15px;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(20px);
-            border-radius: 36px;
-            padding: 16px 22px;
-            color: #fff0e6;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(24px);
+            border-radius: 40px;
+            padding: 18px 24px;
+            color: #fff0e8;
             font-size: clamp(0.9rem, 4vw, 1.15rem);
             font-weight: 600;
             text-align: center;
-            border: 1px solid rgba(255, 100, 80, 0.9);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 35px rgba(255, 50, 50, 0.3);
+            border: 1px solid rgba(255, 80, 70, 0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(255, 40, 40, 0.4);
             z-index: 45;
             max-height: 28vh;
             overflow-y: auto;
             line-height: 1.45;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         .romantic-text {
@@ -133,17 +176,17 @@
         }
 
         .poem-area {
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 32px;
-            padding: 14px 18px;
-            margin-top: 8px;
+            background: rgba(0, 0, 0, 0.92);
+            border-radius: 34px;
+            padding: 16px 20px;
+            margin-top: 10px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             white-space: pre-line;
             font-size: clamp(0.8rem, 3.5vw, 0.98rem);
             max-height: 32vh;
             overflow-y: auto;
             line-height: 1.5;
-            border: 1px solid rgba(255, 80, 80, 0.6);
+            border: 1px solid rgba(255, 80, 80, 0.7);
         }
 
         .counter-badge {
@@ -151,45 +194,40 @@
             top: 15px;
             right: 20px;
             float: right;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(12px);
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: 60px;
             font-weight: bold;
-            color: #ffb090;
+            color: #ffaa88;
             font-family: monospace;
-            font-size: 1rem;
+            font-size: 1.1rem;
             z-index: 50;
-            border: 1px solid #ff7744;
+            border: 1px solid #ff6644;
             margin: 15px;
             display: inline-block;
-            box-shadow: 0 2px 10px black;
+            box-shadow: 0 2px 15px black;
+            letter-spacing: 1px;
         }
 
         .flex-header {
             display: flex;
             justify-content: flex-end;
-            padding: 10px 20px 0 0;
+            padding: 10px 25px 0 0;
         }
 
         @media (max-width: 780px) {
-            .mega-emoji { font-size: 50px; }
-            .mega-item { padding: 10px; min-width: 80px; }
+            .mega-emoji { font-size: 55px; }
+            .mega-item { padding: 12px; min-width: 90px; }
             .mega-name { font-size: 10px; }
+            .ryoko-text { font-size: 28px; }
         }
     </style>
 </head>
 <body>
 <div class="epic-collection" id="epicWorld">
-    <div class="bg-craziness">
-        <!-- Personajes FNAF + Pokémon en el fondo -->
-        <span>🐻</span><span>🐰</span><span>🐥</span><span>🦊</span><span>👑</span><span>🧁</span>
-        <span>🧸</span><span>🐇</span><span>🐤</span><span>🕷️</span><span>🎈</span><span>🎭</span>
-        <span>👻</span><span>🐺</span><span>💀</span><span>🔥</span><span>🌙</span><span>🤖</span>
-        <span>⚡</span><span>🔥</span><span>💧</span><span>🍃</span><span>🐉</span><span>🎲</span>
-        <span>🧸</span><span>🐻‍❄️</span><span>🦊</span><span>🐕</span><span>🐈</span><span>🐉</span>
-        <span>🌟</span><span>💀</span><span>🔪</span><span>🎸</span><span>🪦</span><span>🧸</span>
-    </div>
+    <!-- Fondo con efectos: personajes, corazones y RYOKO -->
+    <div class="bg-dynamic" id="bgDynamic"></div>
 
     <div class="flex-header">
         <div class="counter-badge" id="epicCounter">🔥 0 / 6 💀</div>
@@ -198,18 +236,18 @@
     <div class="mega-layer" id="megaLayer"></div>
 
     <div class="message-panel" id="messagePanel">
-        <div class="romantic-text" id="msgText">🧸🔥 Toca cada personaje legendario (FNAF + Pokémon)… cada uno esconde una confesión salvaje para ti, Ryoko. 🔥💀⚡</div>
+        <div class="romantic-text" id="msgText">🧸🔥 Toca cada personaje legendario (FNAF + Pokémon)… cada uno esconde una confesión salvaje para ti, Ryoko. 🔥💀⚡💜</div>
         <div id="poemDisplay" style="display: none;" class="poem-area"></div>
     </div>
 </div>
 
 <script>
     (function() {
-        // 6 personajes representando la colección masiva: Freddy, Foxy, Mangle, Springtrap, Circus Baby, Pikachu + Pokéball
+        // 6 personajes representando la colección masiva
         const epicEmojis = ["🐻", "🦊", "🕷️", "💀", "🤖", "⚡"];
         const epicNames = ["Freddy + Golden Freddy", "Foxy & Phantom Foxy", "Mangle + The Puppet", "Springtrap & Scraptrap", "Circus Baby + Ennard", "Pikachu + Pokéball"];
         
-        // Mensajes súper locos y pasionales (con control y entrega)
+        // Mensajes súper locos y pasionales
         const epicMessages = [
             "🔥 Ryoko, todos los animatrónicos se quedan helados cuando caminas. Freddy, Bonnie, Chica, incluso Golden Freddy saben que eres tú la que controla mi corazón. Me encanta cuando me dejas tomar la iniciativa y siento cómo tu cuerpo se entrega. Tu sonrisa enciende la pista de baile y la luna se rinde ante ti. Eres mi cupcake prohibido. 💜💀",
             "🦊 Foxy y sus fantasmas se esconden, pero yo no puedo esconder lo que siento. Ryoko, esa mirada tuya cuando digo 'quieta' me desarma. Tu risa hace que los phantom animatronics bailen de alegría. Me fascina cómo te abandonas al placer de ser dominada. Tus labios son mi botín favorito. Te adoro mi loba. 🌙🔥",
@@ -254,6 +292,66 @@ porque eres mi colección completa, mi más salvaje upgrade.
         const msgTextDiv = document.getElementById("msgText");
         const poemDisplayDiv = document.getElementById("poemDisplay");
         const container = document.getElementById("epicWorld");
+        const bgContainer = document.getElementById("bgDynamic");
+
+        // CREAR FONDO ÉPICO: personajes flotantes, RYOKO, corazones
+        function createEpicBackground() {
+            bgContainer.innerHTML = "";
+            
+            // Personajes FNAF + Pokémon flotando
+            const floatingChars = [
+                "🐻", "🐰", "🐥", "🦊", "👑", "🧁", "🧸", "🐇", "🐤", "🕷️", "🎈", "🎭",
+                "👻", "🐺", "💀", "🔥", "🌙", "🤖", "⚡", "🔥", "💧", "🍃", "🐉", "🎲",
+                "🐻‍❄️", "🐕", "🐈", "🌟", "🔪", "🎸", "🪦", "🧸", "🐉", "⭐", "💀", "🤖"
+            ];
+            
+            for(let i = 0; i < 45; i++) {
+                const charSpan = document.createElement("div");
+                charSpan.className = "floating-char";
+                charSpan.textContent = floatingChars[i % floatingChars.length];
+                charSpan.style.left = Math.random() * 100 + "%";
+                charSpan.style.top = Math.random() * 100 + "%";
+                charSpan.style.animationDuration = 15 + Math.random() * 25 + "s";
+                charSpan.style.animationDelay = Math.random() * 10 + "s";
+                charSpan.style.fontSize = 22 + Math.random() * 30 + "px";
+                charSpan.style.opacity = 0.2 + Math.random() * 0.2;
+                bgContainer.appendChild(charSpan);
+            }
+            
+            // Textos de RYOKO en diferentes posiciones y rotaciones
+            const ryokoTexts = [
+                "❤️ RYOKO ❤️", "💜 RYOKO 💜", "🔥 RYOKO 🔥", "🌙 RYOKO 🌙", 
+                "✨ RYOKO ✨", "💀 RYOKO 💀", "⚡ RYOKO ⚡", "🎮 RYOKO 🎮"
+            ];
+            
+            for(let i = 0; i < 25; i++) {
+                const ryokoDiv = document.createElement("div");
+                ryokoDiv.className = "ryoko-text";
+                ryokoDiv.textContent = ryokoTexts[i % ryokoTexts.length];
+                ryokoDiv.style.left = Math.random() * 100 + "%";
+                ryokoDiv.style.top = Math.random() * 100 + "%";
+                ryokoDiv.style.fontSize = 28 + Math.random() * 45 + "px";
+                ryokoDiv.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+                ryokoDiv.style.animationDelay = Math.random() * 4 + "s";
+                ryokoDiv.style.animationDuration = 3 + Math.random() * 3 + "s";
+                bgContainer.appendChild(ryokoDiv);
+            }
+            
+            // Corazones flotantes enormes
+            const hearts = ["💜", "❤️", "💖", "💗", "💓", "🔥", "💀"];
+            for(let i = 0; i < 40; i++) {
+                const heartDiv = document.createElement("div");
+                heartDiv.className = "heart-bg";
+                heartDiv.textContent = hearts[i % hearts.length];
+                heartDiv.style.left = Math.random() * 100 + "%";
+                heartDiv.style.top = Math.random() * 100 + "%";
+                heartDiv.style.fontSize = 30 + Math.random() * 50 + "px";
+                heartDiv.style.animationDuration = 8 + Math.random() * 15 + "s";
+                heartDiv.style.animationDelay = Math.random() * 5 + "s";
+                heartDiv.style.opacity = 0.12 + Math.random() * 0.2;
+                bgContainer.appendChild(heartDiv);
+            }
+        }
 
         function createEpicItems() {
             const layer = document.getElementById("megaLayer");
@@ -276,7 +374,7 @@ porque eres mi colección completa, mi más salvaje upgrade.
 
         function handleEpicClick(idx, element) {
             if(element.getAttribute("data-clicked") === "true") {
-                msgTextDiv.innerHTML = `💀 Ryoko, ya liberaste a este personaje... atrapa otro de la colección épica 🔥⚡`;
+                msgTextDiv.innerHTML = `💀 Ryoko, ya liberaste a este personaje... atrapa otro de la colección épica 🔥⚡💜`;
                 return;
             }
             element.setAttribute("data-clicked", "true");
@@ -305,16 +403,16 @@ porque eres mi colección completa, mi más salvaje upgrade.
             poemDisplayDiv.innerHTML = `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-style: normal; font-weight: 500; text-align: center; line-height: 1.5; font-size: 0.85rem;">${wildPoem.replace(/\n/g, '<br>')}</div><br><div style="text-align:center; font-size:0.95rem; font-family: monospace;">🎮 A + R = FOREVER EN CADA JUEGO 🔥<br>💜 TE AMO RYOKO, MI LEYENDA VIVA 💜</div>`;
             counterSpan.style.background = "#b0305edd";
             counterSpan.innerHTML = "💀 COLECCIÓN COMPLETA 🔥";
-            for(let i=0;i<30;i++) {
+            for(let i=0;i<40;i++) {
                 setTimeout(() => createEpicSpark(), i*70);
             }
         }
 
         function createEpicSpark() {
             const spark = document.createElement("div");
-            spark.innerText = ["🔥💀","🎲💜","🤖⚡","🧸❤️"][Math.floor(Math.random()*4)];
+            spark.innerText = ["🔥💀","🎲💜","🤖⚡","🧸❤️","💀🔥","⚡💜"][Math.floor(Math.random()*6)];
             spark.style.position = "absolute";
-            spark.style.fontSize = 26 + Math.random() * 28 + "px";
+            spark.style.fontSize = 28 + Math.random() * 30 + "px";
             spark.style.left = Math.random() * 100 + "%";
             spark.style.bottom = "0px";
             spark.style.pointerEvents = "none";
@@ -323,7 +421,7 @@ porque eres mi colección completa, mi más salvaje upgrade.
             spark.style.transition = "all 3.5s ease-out";
             container.appendChild(spark);
             requestAnimationFrame(() => {
-                spark.style.transform = `translateY(-${window.innerHeight * 0.8}px) rotate(15deg)`;
+                spark.style.transform = `translateY(-${window.innerHeight * 0.8}px) rotate(18deg)`;
                 spark.style.opacity = "0";
             });
             setTimeout(() => spark.remove(), 3500);
@@ -332,11 +430,11 @@ porque eres mi colección completa, mi más salvaje upgrade.
         function addGlobalRipple(e) {
             const rect = container.getBoundingClientRect();
             const rippleDiv = document.createElement("div");
-            rippleDiv.innerText = "🔥💀⚡";
+            rippleDiv.innerText = "🔥💀⚡💜";
             rippleDiv.style.position = "absolute";
             rippleDiv.style.left = (e.clientX - rect.left) + "px";
             rippleDiv.style.top = (e.clientY - rect.top) + "px";
-            rippleDiv.style.fontSize = "34px";
+            rippleDiv.style.fontSize = "40px";
             rippleDiv.style.pointerEvents = "none";
             rippleDiv.style.zIndex = "200";
             rippleDiv.style.transform = "translate(-50%, -50%)";
@@ -351,14 +449,16 @@ porque eres mi colección completa, mi más salvaje upgrade.
             }, 30);
         }
 
+        createEpicBackground();
         createEpicItems();
+        
         container.addEventListener("click", (e) => {
-            if(e.target === container || e.target.classList.contains("bg-craziness") || e.target.classList.contains("epic-collection")) {
+            if(e.target === container || e.target.classList.contains("bg-dynamic") || e.target.classList.contains("epic-collection")) {
                 addGlobalRipple(e);
             }
         });
         container.addEventListener("touchstart", (e) => {
-            if(e.target === container || e.target.classList.contains("bg-craziness") || e.target.classList.contains("epic-collection")) {
+            if(e.target === container || e.target.classList.contains("bg-dynamic") || e.target.classList.contains("epic-collection")) {
                 const touch = e.touches[0];
                 addGlobalRipple(touch);
             }
